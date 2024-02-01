@@ -487,9 +487,6 @@
             "caching": "ReadOnly",
             "diffDiskSettings": {
                 "option": "Local"
-            },
-            "managedDisk": {
-              "storageAccountType": "[variables('storageAccountType')]"
             }
           },
           "imageReference": {
