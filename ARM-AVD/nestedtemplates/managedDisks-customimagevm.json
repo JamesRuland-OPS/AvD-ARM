@@ -486,7 +486,8 @@
             "createOption": "FromImage",
             "caching": "ReadOnly",
             "diffDiskSettings": {
-                "option": "Local"
+                "option": "Local",
+                "placement": "CacheDisk"
             }
           },
           "imageReference": {
