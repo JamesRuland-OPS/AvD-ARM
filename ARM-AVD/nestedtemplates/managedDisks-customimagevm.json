@@ -487,7 +487,7 @@
             "caching": "ReadOnly",
             "diffDiskSettings": {
                 "option": "Local",
-                "placement": "CacheDisk"
+                "placement": "ResourceDisk"
             }
           },
           "imageReference": {
