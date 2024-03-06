@@ -548,6 +548,10 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
+          "templateDeploymentName": {
+            "value": "[parameters('templateDeploymentName')]"
+          },
+
           "artifactsLocation": {
             "value": "[parameters('artifactsLocation')]"
           },
@@ -667,9 +671,6 @@
           },
           "bootDiagnostics": {
             "value": "[parameters('bootDiagnostics')]"
-          },
-          "_guidValue": {
-            "value": "[parameters('deploymentId')]"
           },
           "userAssignedIdentity": {
             "value": "[parameters('userAssignedIdentity')]"
