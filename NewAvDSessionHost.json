@@ -2,12 +2,23 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+
+    "deploymentName": {
+      "type": "string",
+      "metadata": {
+        "description": "Determined by passthrough, helps ensure that deployment names are unique"
+      },
+      "defaultValue": ""
+
+    },
+
     "nestedTemplatesLocation": {
       "type": "string",
       "metadata": {
         "description": "The base URI where artifacts required by this template are located."
       },
       "defaultValue": ""
+
     },
     "artifactsLocation": {
       "type": "string",
@@ -468,7 +479,7 @@
   "resources": [
     {
       "apiVersion": "2018-05-01",
-      "name": "[concat('UpdateHostPool-', parameters('deploymentId'))]",
+      "name": "[concat(parameters('deploymentName'), '-UpdateHostPool')]",
       "type": "Microsoft.Resources/deployments",
       "resourceGroup": "[parameters('hostpoolResourceGroup')]",
       "condition": "[not(empty(parameters('hostpoolResourceGroup')))]",
@@ -491,7 +502,7 @@
     },
     {
       "apiVersion": "2018-05-01",
-      "name": "[concat('AVSet-linkedTemplate-', parameters('deploymentId'))]",
+      "name": "[concat(parameters('deploymentName'), '-AVSetTemplate')]",
       "type": "Microsoft.Resources/deployments",
       "resourceGroup": "[parameters('vmResourceGroup')]",
       "condition": "[and(equals(parameters('availabilityOption'), 'AvailabilitySet'), parameters('createAvailabilitySet'))]",
@@ -524,7 +535,7 @@
     },
     {
       "apiVersion": "2020-08-01",
-      "name": "[concat('vmCreation-linkedTemplate-', parameters('deploymentId'))]",
+      "name": "[concat(parameters('deploymentName'), '-TemplateVMCreation')]",
       "resourceGroup": "[parameters('vmResourceGroup')]",
       "dependsOn": [
         "[concat('AVSet-linkedTemplate-', parameters('deploymentId'))]"
