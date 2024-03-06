@@ -530,7 +530,7 @@
         }
       },
       "dependsOn": [
-        "[concat('UpdateHostPool-', parameters('deploymentId'))]"
+        "[concat(parameters('templateDeploymentName'), '-UpdateHostPool')]"
       ]
     },
     {
@@ -538,7 +538,7 @@
       "name": "[concat(parameters('templateDeploymentName'), '-TemplateVMCreation')]",
       "resourceGroup": "[parameters('vmResourceGroup')]",
       "dependsOn": [
-        "[concat('AVSet-linkedTemplate-', parameters('deploymentId'))]"
+        "[concat(parameters('templateDeploymentName'), '-AVSetTemplate')]"
       ],
       "type": "Microsoft.Resources/deployments",
       "properties": {
