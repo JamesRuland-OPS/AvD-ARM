@@ -270,7 +270,7 @@
     },
 
     "vmOsDiskSetting": {
-      "defaultValue": "",
+      "defaultValue": "Ephemeral",
       "type": "string",
       "allowedValues": [
         "Ephemeral",
