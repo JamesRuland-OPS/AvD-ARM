@@ -1,0 +1,9 @@
+# Files
+secrets.txt
+
+# Folders
+/Ignore
+
+# Certificates
+*.pfx
+*.cer
