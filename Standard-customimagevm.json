@@ -2,6 +2,13 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "templateDeploymentName": {
+      "type": "string",
+      "metadata": {
+        "description": "Determined by passthrough, helps ensure that deployment names are unique"
+      },
+      "defaultValue": ""
+    },
     "artifactsLocation": {
       "type": "string",
       "metadata": {
@@ -347,8 +354,8 @@
     "emptyArray": [],
     "domain": "[if(equals(parameters('domain'), ''), last(split(parameters('administratorAccountUsername'), '@')), parameters('domain'))]",
     "storageAccountType": "[parameters('rdshVMDiskType')]",
-    "newNsgName": "[concat(parameters('rdshPrefix'), 'nsg-', parameters('_guidValue'))]",
-    "newNsgDeploymentName": "[concat('NSG-linkedTemplate-', parameters('_guidValue'))]",
+    "newNsgName": "[concat(parameters('rdshPrefix'), 'nsg-', parameters('templateDeploymentName'))]",
+    "newNsgDeploymentName": "[concat(parameters('templateDeploymentName'), '-NSGlinkedTemplate')]",
     "nsgId": "[if(parameters('createNetworkSecurityGroup'), resourceId('Microsoft.Network/networkSecurityGroups', variables('newNsgName')), parameters('networkSecurityGroupId'))]",
     "isVMAdminAccountCredentialsProvided": "[and(not(equals(parameters('vmAdministratorAccountUsername'), '')), not(equals(parameters('vmAdministratorAccountPassword'), '')))]",
     "vmAdministratorUsername": "[if(variables('isVMAdminAccountCredentialsProvided'), parameters('vmAdministratorAccountUsername'), first(split(parameters('administratorAccountUsername'), '@')))]",
